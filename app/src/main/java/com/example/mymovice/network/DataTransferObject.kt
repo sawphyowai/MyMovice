@@ -4,6 +4,8 @@ import android.os.Parcelable
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
+import com.example.mymovice.domain.DomainImage
+import com.example.mymovice.database.*
 
 @JsonClass(generateAdapter = true)
 data class MoveContainer(val move:List<MoveProperty>)
@@ -27,25 +29,24 @@ data class Image(
 ):Parcelable
 
 
+fun MoveContainer.asDomainModel():Array<DomainImage>{
+    return move.map{
+        DomainImage(
+            id = it.id,
+            name = it.name,
+            image = it.image,
+            summary = it.summary
+        )
+    }.toTypedArray()
+}
 
-//fun MoveContainer.asDomainModel():Array<DatabaseImage>{
-//    return move.map{
-//        DatabaseImage(
-//            id = it.id,
-//            name = it.name,
-//            image = it.image,
-//            summary = it.summary
-//        )
-//    }.toTypedArray()
-//}
-//
-//fun MoveContainer.asDatabaseModel():List<DomainImage>{
-//    return move.map {
-//        DomainImage(
-//            id = it.id,
-//            name = it.name,
-//            image = it.image,
-//            summary = it.summary
-//        )
-//    }
-//}
+fun MoveContainer.asDatabaseModel():List<Move>{
+    return move.map {
+        Move(
+            id = it.id,
+            name = it.name,
+            image = it.image,
+            summary = it.summary
+        )
+    }
+}
