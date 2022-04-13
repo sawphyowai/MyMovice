@@ -6,18 +6,19 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mymovice.databinding.GridViewItemBinding
+import com.example.mymovice.domain.DomainImage
 import com.example.mymovice.network.MoveProperty
 
-class PhotoGridAdapter(val clickListener:ClickListener):ListAdapter<MoveProperty,PhotoGridAdapter.ViewHolder>(CallBack()){
+class PhotoGridAdapter(val clickListener:ClickListener):ListAdapter<DomainImage,PhotoGridAdapter.ViewHolder>(CallBack()){
     class ViewHolder(var binding: GridViewItemBinding):RecyclerView.ViewHolder(binding.root) {
-        fun bind(item:MoveProperty?){
+        fun bind(item:DomainImage?){
             binding.move=item
             binding.executePendingBindings()
         }
     }
 
-    class ClickListener(val clickListener:(moveData:MoveProperty)->Unit) {
-        fun onClick(moveData:MoveProperty)=clickListener(moveData)
+    class ClickListener(val clickListener:(moveData:DomainImage)->Unit) {
+        fun onClick(moveData:DomainImage)=clickListener(moveData)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -34,12 +35,13 @@ class PhotoGridAdapter(val clickListener:ClickListener):ListAdapter<MoveProperty
 
 }
 
-class CallBack :DiffUtil.ItemCallback<MoveProperty>(){
-    override fun areItemsTheSame(oldItem: MoveProperty, newItem: MoveProperty): Boolean {
+class CallBack :DiffUtil.ItemCallback<DomainImage>(){
+    override fun areItemsTheSame(oldItem: DomainImage, newItem: DomainImage): Boolean {
         return oldItem==newItem
     }
 
-    override fun areContentsTheSame(oldItem: MoveProperty, newItem: MoveProperty): Boolean {
+    override fun areContentsTheSame(oldItem: DomainImage, newItem: DomainImage): Boolean {
         return oldItem.id==newItem.id
     }
+
 }

@@ -6,7 +6,7 @@
     <data>
         <variable
             name="move"
-            type="com.example.mymovice.network.MoveProperty" />
+            type="com.example.mymovice.domain.DomainImage" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -14,7 +14,7 @@
 
         <ImageView
             android:id="@+id/image"
-            app:Image="@{move.image.original}"
+            app:Image="@{move.image}"
             android:layout_width="wrap_content"
             android:layout_height="170dp"
             android:padding="6dp"
@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            app:textTitle="@{move}"
+            android:text="@{move.name}"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/image"
             app:layout_constraintStart_toStartOf="@+id/image"

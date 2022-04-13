@@ -7,12 +7,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import androidx.room.Database
+import com.example.mymovice.domain.DomainImage
+import com.example.mymovice.moveReposity.MoveReporsity
 import com.example.mymovice.network.MoveProperty
 
-class DetailViewModel(val moveProperty: MoveProperty,val application: Application):ViewModel() {
+class DetailViewModel(val moveProperty: DomainImage,val application: Application):ViewModel() {
 
-    private val _selectedMoveProperty= MutableLiveData<MoveProperty>()
-    val selectedMoveProperty: LiveData<MoveProperty>
+    private val _selectedMoveProperty= MutableLiveData<DomainImage>()
+    val selectedMoveProperty: LiveData<DomainImage>
         get() = _selectedMoveProperty
     init{
         _selectedMoveProperty.value= moveProperty

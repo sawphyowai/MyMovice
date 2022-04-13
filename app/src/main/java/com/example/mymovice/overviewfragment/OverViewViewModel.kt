@@ -1,57 +1,44 @@
 package com.example.mymovice.overviewfragment
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.example.mymovice.network.MoveApi
-import com.example.mymovice.network.MoveProperty
+import android.app.Application
+import android.content.Context
+import android.util.Log
+import android.view.View
+import androidx.lifecycle.*
+import com.example.mymovice.database.getInstance
+import com.example.mymovice.domain.DomainImage
+import com.example.mymovice.moveReposity.MoveReporsity
 import kotlinx.coroutines.*
-import retrofit2.Call
-import retrofit2.Response
-import java.lang.Exception
 
-enum class MoveStatus{
-    LOADING,ERROR,DONE
-}
-class OverViewViewModel:ViewModel() {
+class OverViewViewModel(application: Application):AndroidViewModel(application) {
 
-    private val _response=MutableLiveData<List<MoveProperty>>()
-    val response:LiveData<List<MoveProperty>>
-    get() = _response
+    private var _allData=MutableLiveData<List<DomainImage>>()
+    val allData:LiveData<List<DomainImage>>
+    get() = _allData
 
-    private val _status= MutableLiveData<MoveStatus>()
-    val status:LiveData<MoveStatus>
-    get() = _status
-
-    private val _navigatedToMoveDetail=MutableLiveData<MoveProperty>()
-    val navigatedToMoveDetail:LiveData<MoveProperty>
+    private val _navigatedToMoveDetail=MutableLiveData<DomainImage?>()
+    val navigatedToMoveDetail:LiveData<DomainImage?>
     get() = _navigatedToMoveDetail
 
     private val viewModelJob= Job()
     private val coroutineScope= CoroutineScope(viewModelJob+Dispatchers.Main)
 
-    init{
-        getOverViewNetWork()
-    }
+    private val database= getInstance(application)
+    private val reposity=MoveReporsity(database)
 
-    private fun getOverViewNetWork() {
-        coroutineScope.launch {
-            _status.value=MoveStatus.LOADING
-            try{
-                val getFromNetwork=MoveApi.retro_service.getProperties().await()
-                _response.value=getFromNetwork
-                _status.value=MoveStatus.DONE
-            }catch (e:Exception){
-                _status.value=MoveStatus.ERROR
-            }
+    init{
+        viewModelScope.launch {
+            reposity.refreshMove()
         }
+        _allData=reposity.allData as MutableLiveData<List<DomainImage>>
     }
+    val result=MoveReporsity(database).result
 
     override fun onCleared() {
         super.onCleared()
         coroutineScope.cancel()
     }
-    fun navigatedToDetail(moveProperty: MoveProperty){
+    fun navigatedToDetail(moveProperty: DomainImage){
         _navigatedToMoveDetail.value=moveProperty
     }
     fun completeNavigation(){

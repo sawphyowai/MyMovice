@@ -14,7 +14,7 @@
 
         <ImageView
             android:id="@+id/image"
-            app:Image="@{Detail.moveProperty.image.original}"
+            app:Image="@{Detail.moveProperty.image}"
             android:layout_width="wrap_content"
             android:layout_height="170dp"
             android:padding="6dp"

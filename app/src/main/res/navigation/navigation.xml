@@ -21,6 +21,6 @@
         tools:layout="@layout/fragment_detail" >
         <argument
             android:name="property"
-            app:argType="com.example.mymovice.network.MoveProperty"/>
+            app:argType="com.example.mymovice.domain.DomainImage"/>
     </fragment>
 </navigation>

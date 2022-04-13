@@ -3,16 +3,20 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.32" />
         <entry key="../MyMovice/app/src/main/res/drawable-v24/ic_connection_error.xml" value="0.1" />
         <entry key="../MyMovice/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="../MyMovice/app/src/main/res/layout/fragment_detail.xml" value="0.36350148367952523" />
         <entry key="../MyMovice/app/src/main/res/layout/fragment_over_view.xml" value="0.1" />
         <entry key="../MyMovice/app/src/main/res/layout/grid_view_item.xml" value="0.1" />
         <entry key="../MyMovice/app/src/main/res/layout/imagebinding.xml" value="0.16145833333333334" />
+        <entry key="app/src/main/res/drawable-v24/ic_broken_image.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable-v24/ic_connection_error.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2064814814814815" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/fragment_over_view.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_over_view.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/grid_view_item.xml" value="0.17326732673267325" />
       </map>
     </option>
   </component>
